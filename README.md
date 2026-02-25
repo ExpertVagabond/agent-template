@@ -8,6 +8,8 @@ When building multi-agent workflows, each agent needs a consistent workspace wit
 
 Fork it. Customize it. Use it as the foundation for every agent in your pipeline.
 
+> **New here?** Start with the [Quickstart](QUICKSTART.md).
+
 ## Structure
 
 ```
@@ -15,6 +17,8 @@ agent-template/
   AGENTS.md       -- Operational instructions (what the agent does, its process, acceptance criteria)
   SOUL.md         -- Persona and values (how the agent thinks, decides, and communicates)
   HEARTBEAT.md    -- Periodic maintenance protocol (health checks, cleanup, reporting)
+  WORKFLOWS.md    -- Guide to creating multi-agent workflow pipelines
+  QUICKSTART.md   -- Get running in 5 minutes
   MEMORY/
     README.md     -- How the memory system works
     context.md    -- Current project state (updated each session)
