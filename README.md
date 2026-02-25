@@ -70,9 +70,49 @@ Even without Antfarm, this pattern works for any AI agent:
 3. Point your agent framework to read these files at session start
 4. Update `MEMORY/` at the end of each session
 
+## For AI Companies
+
+If you are building multi-agent coding tools -- whether that is an IDE copilot, an agent platform, or an autonomous dev pipeline -- this workspace pattern solves the hard problems you are already hitting:
+
+### The Problem
+
+Autonomous agents lose context between sessions. They forget decisions, repeat mistakes, and have no structured way to hand off work to the next agent in a pipeline. Every AI company building multi-agent dev tools is independently reinventing this wheel.
+
+### The Solution
+
+This template is the workspace pattern that powers [Antfarm](https://github.com/ExpertVagabond/antfarm-devpipe), which has autonomously shipped 33 stories across 3 production Solana repos with zero regressions. Here is how the pieces map:
+
+| File | What It Does | Analogy |
+|------|-------------|---------|
+| **AGENTS.md** | Operational instructions -- what the agent does, its process, acceptance criteria | What Claude Code's `CLAUDE.md` does for human developers |
+| **SOUL.md** | Agent personality and values -- how it reasons, decides, and communicates | Alignment instructions for autonomous agents that make judgment calls |
+| **MEMORY/** | Persistent learning across sessions -- context, decisions, lessons, blockers | RAG-lite without the vector database infrastructure |
+| **HEARTBEAT.md** | Self-maintenance protocol -- health checks, cleanup, reporting | Keeps long-running agents from accumulating drift |
+| **WORKFLOWS.md** | Multi-agent coordination -- how agents hand off work to each other | The orchestration glue between your agent steps |
+
+### Why This Matters for Your Platform
+
+1. **Context persistence without infrastructure** -- No vector DB, no embedding pipeline. Just markdown files in git. Works offline, works at scale, works with any LLM backend.
+2. **Agent identity prevents role confusion** -- When you have 6 agents in a pipeline, each one needs to know exactly what it does and does not do. AGENTS.md + SOUL.md eliminate the "planner that starts coding" failure mode.
+3. **Memory compounds over sessions** -- Each run makes the next run smarter. `lessons.md` captures patterns. `decisions.md` prevents revisiting settled questions. `blockers.md` routes around known issues.
+4. **Fork-and-customize** -- Every agent role gets its own copy of these files. The Planner's AGENTS.md is completely different from the Verifier's. Same structure, different specialization.
+
+### Quick Integration
+
+```bash
+# Fork this template for each agent role in your pipeline
+gh repo fork ExpertVagabond/agent-template --clone
+
+# Customize identity files for your agent's role
+# Point your agent framework to read these files at session start
+# Update MEMORY/ at the end of each session
+```
+
+Your agents already write code. This template gives them structured memory, clear identity, and reliable handoff -- the missing pieces that turn individual agents into a coordinated team.
+
 ## Related
 
-- [Antfarm](https://github.com/ExpertVagabond/antfarm-devpipe) -- Multi-agent development pipeline
+- [Antfarm](https://github.com/ExpertVagabond/antfarm-devpipe) -- Multi-agent development pipeline (33 stories shipped)
 - [snarktank/antfarm](https://github.com/snarktank/antfarm) -- Upstream project (1.6k stars)
 - [Ralph](https://github.com/snarktank/ralph) -- Single-agent autonomous loop
 
